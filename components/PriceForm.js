@@ -27,10 +27,10 @@ export default class PriceForm extends React.Component {
 
   render() {
     return (
-      <View style={Styles.container}>
-        <Text>Select your price range:</Text>
+      <View style={{height: 200, alignItems: 'center'}}>
+        <Text>Adjust your price range:</Text>
         <View style={Styles.sliderContainer}>
-          <Text>from {this.state.priceMin}</Text>
+          <Text>{this.state.priceMin}</Text>
           <Slider
             style={Styles.slider}
             step={1}
@@ -42,7 +42,7 @@ export default class PriceForm extends React.Component {
           />
         </View>
         <View style={Styles.sliderContainer}>
-          <Text>To {this.state.priceMax}</Text>
+          <Text>{this.state.priceMax}</Text>
           <Slider
             style={Styles.slider}
             step={1}
