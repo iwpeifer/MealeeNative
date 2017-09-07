@@ -11,36 +11,6 @@ export default class SearchTermForm extends React.Component {
     }
   }
 
-  submit() {
-    this.props.storeInput('searchTerm', this.state.searchTerm)
-  }
-
-  displayNextButton() {
-    return (
-      <View style={Styles.next}>
-        <Button
-          onPress={() => this.submit()}
-          title={"NEXT"}
-          color={'#fff'}
-          accessibilityLabel={"Next"}
-        />
-      </View>
-    )
-  }
-
-  displayGoBackButton() {
-    return (
-      <View>
-        <Button
-          onPress={() => this.props.goBack('location')}
-          title={"Back"}
-          color={'#ff9b9b'}
-          accessibilityLabel={"go back"}
-        />
-      </View>
-    );
-  }
-
   render() {
     return (
       <View style={Styles.container}>
@@ -51,7 +21,7 @@ export default class SearchTermForm extends React.Component {
           placeholder ={'e.g., Lunch, Pizza, Shoes'}
           onChangeText={(searchTerm) => this.setState({searchTerm})}>
         </TextInput>
-        {this.state.searchTerm ? this.displayNextButton() : null}
+        {this.state.searchTerm ? this.props.displayNextButton('searchTerm', this.state.searchTerm) : null}
         {this.props.displayGoBackButton('location')}
       </View>
     );

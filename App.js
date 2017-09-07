@@ -14,16 +14,33 @@ export default class App extends React.Component {
       searchTerm: "",
       priceMin: "",
       priceMax: "",
-      limit: "",
     }
     this.storeInput = this.storeInput.bind(this);
     this.goBack = this.goBack.bind(this);
   }
 
-  storeInput(inputType, input) {
+  storeInput(inputType, input, inputType2, input2) {
     this.setState({
       [inputType]: input
     });
+    if (inputType2) {
+      this.setState({
+        [inputType2]: input2
+      });
+    }
+  }
+
+  displayNextButton(inputType, input, inputType2=null, input2=null) {
+    return (
+      <View style={Styles.next}>
+        <Button
+          onPress={() => this.storeInput(inputType, input, inputType2, input2)}
+          title={"NEXT"}
+          color={'#fff'}
+          accessibilityLabel={"Next"}
+        />
+      </View>
+    );
   }
 
   goBack(inputType) {
@@ -49,7 +66,8 @@ export default class App extends React.Component {
     if (!this.state.location) {
       return (
         <LocationForm
-          storeInput={this.storeInput}
+          storeInput        ={this.storeInput}
+          displayNextButton={this.displayNextButton}
         />
       );
     }
@@ -58,6 +76,7 @@ export default class App extends React.Component {
         <SearchTermForm
           storeInput         ={this.storeInput}
           goBack             ={this.goBack}
+          displayNextButton={this.displayNextButton}
           displayGoBackButton={this.displayGoBackButton}
         />
       );
@@ -67,6 +86,7 @@ export default class App extends React.Component {
         <PriceForm
           storeInput         ={this.storeInput}
           goBack             ={this.goBack}
+          displayNextButton={this.displayNextButton}
           displayGoBackButton={this.displayGoBackButton}
         />
       );

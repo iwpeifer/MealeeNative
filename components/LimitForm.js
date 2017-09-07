@@ -11,36 +11,6 @@ export default class LimitForm extends React.Component {
     }
   }
 
-  submit() {
-    this.props.storeInput('limit', this.state.limit)
-  }
-
-  displayNextButton() {
-    return (
-      <View style={Styles.next}>
-        <Button
-          onPress={() => this.submit()}
-          title={"Play!"}
-          color={'#fff'}
-          accessibilityLabel={"Next"}
-        />
-      </View>
-    )
-  }
-
-  displayGoBackButton() {
-    return (
-      <View>
-        <Button
-          onPress={() => this.props.goBack('location')}
-          title={"Back"}
-          color={'#ff9b9b'}
-          accessibilityLabel={"go back"}
-        />
-      </View>
-    );
-  }
-
   render() {
     return (
       <View style={Styles.container}>

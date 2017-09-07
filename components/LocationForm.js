@@ -39,23 +39,6 @@ export default class LocationForm extends React.Component {
     })
   }
 
-  submit() {
-    this.props.storeInput('location', this.state.location)
-  }
-
-  displayNextButton() {
-    return (
-      <View style={Styles.next}>
-        <Button
-          onPress={() => this.submit()}
-          title={"NEXT"}
-          color={'#fff'}
-          accessibilityLabel={"Next"}
-        />
-      </View>
-    );
-  }
-
   displayLocationForm() {
     if (this.state.searchingLocation) {
       return (
@@ -85,7 +68,7 @@ export default class LocationForm extends React.Component {
         </View>
         <Text>or enter a location:</Text>
         {this.displayLocationForm()}
-        {this.state.location ? this.displayNextButton() : null}
+        {this.state.location ? this.props.displayNextButton('location', this.state.location) : null}
       </View>
     );
   }

@@ -25,24 +25,6 @@ export default class PriceForm extends React.Component {
     }
   }
 
-  submit() {
-    this.props.storeInput('priceMin', this.state.priceMin)
-    this.props.storeInput('priceMax', this.state.priceMax)
-  }
-
-  displayNextButton() {
-    return (
-      <View style={Styles.next}>
-        <Button
-          onPress={() => this.submit()}
-          title={"NEXT"}
-          color={'#fff'}
-          accessibilityLabel={"Next"}
-        />
-      </View>
-    )
-  }
-
   render() {
     return (
       <View style={Styles.container}>
@@ -71,7 +53,7 @@ export default class PriceForm extends React.Component {
             thumbImage={require('../images/moneybag.png')}
           />
         </View>
-        {this.displayNextButton()}
+        {this.props.displayNextButton('priceMin', this.state.priceMin, 'priceMax', this.state.priceMax)}
         {this.props.displayGoBackButton('searchTerm')}
       </View>
     );
