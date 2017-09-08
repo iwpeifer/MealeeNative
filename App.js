@@ -6,6 +6,7 @@ import SearchTermForm from './components/SearchTermForm';
 import PriceForm from './components/PriceForm';
 import LimitForm from './components/LimitForm';
 import PlayScreen from './components/PlayScreen';
+import OptionCard from './components/OptionCard';
 
 export default class App extends React.Component {
   constructor() {
@@ -129,55 +130,56 @@ export default class App extends React.Component {
   }
 
   renderForms() {
-    if (this.state.gameIsLoading) {
-      return (
-        <ActivityIndicator color={'blue'} size={'large'} />
-      );
-    }
-    if (!this.state.location) {
-      return (
-        <LocationForm
-          storeInput        ={this.storeInput}
-          displayNextButton={this.displayNextButton}
-        />
-      );
-    }
-    if (this.state.location && !this.state.searchTerm) {
-      return (
-        <SearchTermForm
-          storeInput         ={this.storeInput}
-          goBack             ={this.goBack}
-          displayNextButton={this.displayNextButton}
-          displayGoBackButton={this.displayGoBackButton}
-        />
-      );
-    }
-    if (this.state.searchTerm && !this.state.priceMin) {
-      return (
-        <PriceForm
-          storeInput         ={this.storeInput}
-          goBack             ={this.goBack}
-          displayNextButton  ={this.displayNextButton}
-          displayGoBackButton={this.displayGoBackButton}
-        />
-      );
-    }
-    if (this.state.priceMin && this.state.priceMax) {
-      return (
-        <PlayScreen
-          retrieveBusinesses ={this.retrieveBusinesses}
-          displayGoBackButton={this.displayGoBackButton}
-        />
-      )
+    if (!this.state.challenger || !this.state.defender) {
+      if (this.state.gameIsLoading) {
+        return (
+          <ActivityIndicator color={'blue'} size={'large'} />
+        );
+      }
+      if (!this.state.location) {
+        return (
+          <LocationForm
+            storeInput        ={this.storeInput}
+            displayNextButton={this.displayNextButton}
+          />
+        );
+      }
+      if (this.state.location && !this.state.searchTerm) {
+        return (
+          <SearchTermForm
+            storeInput         ={this.storeInput}
+            goBack             ={this.goBack}
+            displayNextButton  ={this.displayNextButton}
+            displayGoBackButton={this.displayGoBackButton}
+          />
+        );
+      }
+      if (this.state.searchTerm && !this.state.priceMin) {
+        return (
+          <PriceForm
+            storeInput         ={this.storeInput}
+            goBack             ={this.goBack}
+            displayNextButton  ={this.displayNextButton}
+            displayGoBackButton={this.displayGoBackButton}
+          />
+        );
+      }
+      if (this.state.priceMin && this.state.priceMax) {
+        return (
+          <PlayScreen
+            retrieveBusinesses ={this.retrieveBusinesses}
+            displayGoBackButton={this.displayGoBackButton}
+          />
+        )
+      }
     }
   }
 
   render() {
     return (
       <View style={Styles.container}>
-        <Text>{this.state.gameIsLoading}</Text>
-        {this.state.challenger.name ? <Text>{this.state.challenger.name}</Text> : null}
-        {this.state.defender.name ? <Text>{this.state.defender.name}</Text> : null}
+        {this.state.challenger ? <OptionCard business={this.state.challenger}/> : null}
+        {this.state.defender ? <OptionCard business={this.state.defender}/> : null}
         {this.renderForms()}
       </View>
     );
