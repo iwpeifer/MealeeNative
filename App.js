@@ -26,6 +26,8 @@ export default class App extends React.Component {
     this.goBack = this.goBack.bind(this);
     this.retrieveBusinesses = this.retrieveBusinesses.bind(this);
     this.displayGoBackButton = this.displayGoBackButton.bind(this);
+    this.retrieveBusinesses = this.retrieveBusinesses.bind(this);
+    this.removeOption = this.removeOption.bind(this);
   }
 
   retrieveBusinesses() {
@@ -48,7 +50,7 @@ export default class App extends React.Component {
       if (this.state.businessPool.length >= 2) {
         this.initialDrawing();
       } else {
-        alert ("ALERT1 No businesses found; try altering the location and/or search term.");
+        alert ("No businesses found; try altering the location and/or search term.");
         this.setState({
           gameIsLoading: false,
           defender: '',
@@ -58,7 +60,7 @@ export default class App extends React.Component {
     })
     .catch( response => {
       console.log(this.state.businessPool)
-      alert("ALERT2 No businesses found; try altering the location and/or search term.");
+      alert("No businesses found; try altering the location and/or search term.");
       this.setState({
         gameIsLoading: false
       });
@@ -84,6 +86,20 @@ export default class App extends React.Component {
     let lowInt = parseInt(priceMin);
     let highInt = parseInt(priceMax);
     return (Array.from({length:highInt - lowInt + 1}, (v,k) => k + lowInt)).join();
+  }
+
+  removeOption(which) {
+    if (this.state.businessPool.length >= 1) {
+      let drawing = Math.floor(Math.random() * (this.state.businessPool.length))
+      this.setState({
+        businessPool: this.state.businessPool.filter((business, index) => index !== drawing),
+        [which]: Object.assign({}, this.state.businessPool[drawing])
+      })
+    } else {
+      this.setState({
+        [which]: ''
+      })
+    }
   }
 
   storeInput(inputType, input, inputType2, input2) {
@@ -133,7 +149,7 @@ export default class App extends React.Component {
     if (!this.state.challenger || !this.state.defender) {
       if (this.state.gameIsLoading) {
         return (
-          <ActivityIndicator color={'blue'} size={'large'} />
+          <ActivityIndicator color={'#b04632'} size={'large'} />
         );
       }
       if (!this.state.location) {
@@ -177,9 +193,9 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={Styles.container}>
-        {this.state.challenger ? <OptionCard business={this.state.challenger}/> : null}
-        {this.state.defender ? <OptionCard business={this.state.defender}/> : null}
+      <View style={{height:600, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        {this.state.challenger ? <OptionCard business={this.state.challenger} removeOption={this.removeOption} opponent={this.state.defender} which={'defender'} businessPool={this.state.businessPool}/> : null}
+        {this.state.defender ? <OptionCard business={this.state.defender} removeOption={this.removeOption} opponent={this.state.challenger} which={'challenger'} businessPool={this.state.businessPool}/> : null}
         {this.renderForms()}
       </View>
     );

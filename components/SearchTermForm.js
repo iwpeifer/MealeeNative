@@ -40,7 +40,7 @@ export default class SearchTermForm extends React.Component {
   render() {
     return (
       <View style={Styles.container}>
-        <Text>What are you looking for?</Text>
+        <Text style={Styles.text}>What are you looking for?</Text>
         <TextInput
           style       ={Styles.input}
           value       ={this.state.searchTerm}

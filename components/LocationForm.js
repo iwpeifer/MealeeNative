@@ -42,7 +42,7 @@ export default class LocationForm extends React.Component {
   displayLocationForm() {
     if (this.state.searchingLocation) {
       return (
-        <ActivityIndicator color={'blue'} size={'large'} style={{margin: 10}}/>
+        <ActivityIndicator color={'#b04632'} size={'large'} style={{margin: 10}}/>
       )
     } else{
       return (
@@ -66,7 +66,7 @@ export default class LocationForm extends React.Component {
             accessibilityLabel={"Get Current Location"}
           />
         </View>
-        <Text>or enter a location:</Text>
+        <Text style={Styles.text}>or enter a location:</Text>
         {this.displayLocationForm()}
         {this.state.location ? this.props.displayNextButton('location', this.state.location) : null}
       </View>
