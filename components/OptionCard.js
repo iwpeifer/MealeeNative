@@ -68,7 +68,7 @@ export default class OptionCard extends React.Component {
     if (!props.opponent) {
       title = "Go here!";
       color = '#b04632';
-      onPress = () => Linking.openURL(props.business.url).catch(err => console.log('An error occurred', err));
+      onPress = () => Linking.openURL(props.business.url).catch(err => alert('An error occurred', err));
     }
     return (
       <Button
@@ -95,17 +95,31 @@ export default class OptionCard extends React.Component {
     )
   }
 
+  displayResetButton() {
+    return (
+      <Button
+        color={'#ff9b9b'}
+        title={'Start Over'}
+        accessibilityLabel={'start over'}
+        onPress={() => this.props.reset()}
+      />
+    );
+  }
+
   render() {
     return (
-      <View style={{margin: 5, borderWidth: 2, borderRadius: 10, borderColor: '#b04632', height: 240, width: 300, justifyContent: 'center', alignItems: 'center'}}>
-        <Text style={{fontWeight: 'bold'}}>{this.props.business.name}</Text>
-        {this.displayImage()}
-        {this.displayReviewInfo()}
-        <View style={{flexDirection: 'row'}}>
-          {this.displayAddress()}
-          {this.displayWalkTime()}
+      <View>
+        <View style={{margin: 5, borderWidth: 2, borderRadius: 10, borderColor: '#b04632', height: 250, width: 300, justifyContent: 'center', alignItems: 'center'}}>
+          <Text style={{fontWeight: 'bold'}}>{this.props.business.name}</Text>
+          {this.displayImage()}
+          {this.displayReviewInfo()}
+          <View style={{flexDirection: 'row'}}>
+            {this.displayAddress()}
+            {this.displayWalkTime()}
+          </View>
+          {this.displayIdRatherGoHereButton(this.props)}
         </View>
-        {this.displayIdRatherGoHereButton(this.props)}
+        {!this.props.opponent ? this.displayResetButton() : null}
       </View>
     );
   }

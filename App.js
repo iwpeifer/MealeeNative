@@ -28,6 +28,7 @@ export default class App extends React.Component {
     this.displayGoBackButton = this.displayGoBackButton.bind(this);
     this.retrieveBusinesses = this.retrieveBusinesses.bind(this);
     this.removeOption = this.removeOption.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   retrieveBusinesses() {
@@ -145,6 +146,20 @@ export default class App extends React.Component {
     );
   }
 
+  reset() {
+    this.setState({
+      location: "",
+      searchTerm: "",
+      priceMin: "",
+      priceMax: "",
+      businessPool: [],
+      gameIsLoading: false,
+      gameHasStarted:false,
+      challenger: '',
+      defender: '',
+    });
+  }
+
   renderForms() {
     if (!this.state.gameHasStarted) {
       if (!this.state.challenger || !this.state.defender) {
@@ -196,8 +211,8 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={{height:600, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        {this.state.challenger ? <OptionCard business={this.state.challenger} removeOption={this.removeOption} opponent={this.state.defender} which={'defender'} businessPool={this.state.businessPool}/> : null}
-        {this.state.defender ? <OptionCard business={this.state.defender} removeOption={this.removeOption} opponent={this.state.challenger} which={'challenger'} businessPool={this.state.businessPool}/> : null}
+        {this.state.challenger ? <OptionCard business={this.state.challenger} removeOption={this.removeOption} opponent={this.state.defender} which={'defender'} businessPool={this.state.businessPool} reset={this.reset}/> : null}
+        {this.state.defender ? <OptionCard business={this.state.defender} removeOption={this.removeOption} opponent={this.state.challenger} which={'challenger'} businessPool={this.state.businessPool} reset={this.reset}/> : null}
         {this.renderForms()}
       </View>
     );
