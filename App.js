@@ -146,47 +146,49 @@ export default class App extends React.Component {
   }
 
   renderForms() {
-    if (!this.state.challenger || !this.state.defender) {
-      if (this.state.gameIsLoading) {
-        return (
-          <ActivityIndicator color={'#b04632'} size={'large'} />
-        );
-      }
-      if (!this.state.location) {
-        return (
-          <LocationForm
-            storeInput        ={this.storeInput}
-            displayNextButton={this.displayNextButton}
-          />
-        );
-      }
-      if (this.state.location && !this.state.searchTerm) {
-        return (
-          <SearchTermForm
-            storeInput         ={this.storeInput}
-            goBack             ={this.goBack}
-            displayNextButton  ={this.displayNextButton}
-            displayGoBackButton={this.displayGoBackButton}
-          />
-        );
-      }
-      if (this.state.searchTerm && !this.state.priceMin) {
-        return (
-          <PriceForm
-            storeInput         ={this.storeInput}
-            goBack             ={this.goBack}
-            displayNextButton  ={this.displayNextButton}
-            displayGoBackButton={this.displayGoBackButton}
-          />
-        );
-      }
-      if (this.state.priceMin && this.state.priceMax) {
-        return (
-          <PlayScreen
-            retrieveBusinesses ={this.retrieveBusinesses}
-            displayGoBackButton={this.displayGoBackButton}
-          />
-        )
+    if (!this.state.gameHasStarted) {
+      if (!this.state.challenger || !this.state.defender) {
+        if (this.state.gameIsLoading) {
+          return (
+            <ActivityIndicator color={'#b04632'} size={'large'} />
+          );
+        }
+        if (!this.state.location) {
+          return (
+            <LocationForm
+              storeInput        ={this.storeInput}
+              displayNextButton={this.displayNextButton}
+            />
+          );
+        }
+        if (this.state.location && !this.state.searchTerm) {
+          return (
+            <SearchTermForm
+              storeInput         ={this.storeInput}
+              goBack             ={this.goBack}
+              displayNextButton  ={this.displayNextButton}
+              displayGoBackButton={this.displayGoBackButton}
+            />
+          );
+        }
+        if (this.state.searchTerm && !this.state.priceMin) {
+          return (
+            <PriceForm
+              storeInput         ={this.storeInput}
+              goBack             ={this.goBack}
+              displayNextButton  ={this.displayNextButton}
+              displayGoBackButton={this.displayGoBackButton}
+            />
+          );
+        }
+        if (this.state.priceMin && this.state.priceMax) {
+          return (
+            <PlayScreen
+              retrieveBusinesses ={this.retrieveBusinesses}
+              displayGoBackButton={this.displayGoBackButton}
+            />
+          )
+        }
       }
     }
   }
