@@ -1,11 +1,14 @@
 import React from 'react';
-import { Text, View, Button, Image, ActivityIndicator, WebView, Linking } from 'react-native';
+import { Text, Image, View, Button, ActivityIndicator, WebView, Linking } from 'react-native';
 
 import Styles from '../stylesheets/Styles'
 
 export default class OptionCard extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      imageIsLoading: 'false'
+    }
   }
 
   defineColor() {
@@ -86,10 +89,13 @@ export default class OptionCard extends React.Component {
       image_url = this.props.business.image_url;
     }
     return (
-      <View style={{borderRadius: 10}}>
+      <View>
         <Image
-          style={{height: 150, width: 250, borderRadius: 10, borderWidth: 1, borderColor: '#b04632'}}
+          onLoadStart={() => this.setState({imageIsLoading: true})}
+          onLoadEnd={() => this.setState({imageIsLoading: false})}
+          style={{height: 150, width: 250}}
           source={{uri: image_url}}
+          resizeMode={'contain'}
         />
       </View>
     )
@@ -112,6 +118,9 @@ export default class OptionCard extends React.Component {
         <View style={{margin: 5, borderWidth: 2, borderRadius: 10, borderColor: '#b04632', height: 250, width: 300, justifyContent: 'center', alignItems: 'center'}}>
           <Text style={{fontWeight: 'bold'}}>{this.props.business.name}</Text>
           {this.displayImage()}
+          <View style={{position: 'absolute'}}>
+            {this.state.imageIsLoading ? <ActivityIndicator size={'large'} color={'#87c540'} style={{paddingBottom: 40}}/> : null}
+          </View>
           {this.displayReviewInfo()}
           <View style={{flexDirection: 'row'}}>
             {this.displayAddress()}

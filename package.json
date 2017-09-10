@@ -19,9 +19,14 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "add": "^2.0.6",
     "expo": "^20.0.0",
     "react": "16.0.0-alpha.12",
     "react-native": "^0.47.0",
-    "react-native-uikit": "^0.1.6"
+    "react-native-fast-image": "^1.0.0",
+    "react-native-image-progress": "^1.0.1",
+    "react-native-progress": "^3.4.0",
+    "react-native-uikit": "^0.1.6",
+    "yarn": "^1.0.0"
   }
 }

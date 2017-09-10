@@ -24,7 +24,6 @@ export default class LimitForm extends React.Component {
             minimumValue={10}
             maximumValue={40}
             onValueChange={(value) => this.setState({limit: value})}
-            thumbImage={require('../images/smileyface4.png')}
           />
         </View>
         {this.displayNextButton()}
