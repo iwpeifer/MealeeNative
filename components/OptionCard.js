@@ -115,11 +115,11 @@ export default class OptionCard extends React.Component {
   render() {
     return (
       <View>
-        <View style={{backgroundColor: '#f5ea92', margin: 5, borderWidth: 2, borderRadius: 10, borderColor: '#7a3020', height: 250, width: 300, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{backgroundColor: '#f5ea92', margin: 5, borderWidth: 2, borderRadius: 10, borderColor: '#7a3020', height: 250, width: 275, justifyContent: 'center', alignItems: 'center'}}>
           <Text style={{fontWeight: 'bold'}}>{this.props.business.name}</Text>
           {this.displayImage()}
           <View style={{position: 'absolute'}}>
-            {this.state.imageIsLoading ? <ActivityIndicator size={'large'} color={'#87c540'} style={{paddingBottom: 40}}/> : null}
+            {this.state.imageIsLoading ? <ActivityIndicator size={'large'} color={'#fbffe0'} style={{paddingBottom: 40}}/> : null}
           </View>
           {this.displayReviewInfo()}
           <View style={{flexDirection: 'row'}}>

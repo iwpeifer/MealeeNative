@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, ActivityIndicator, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, ActivityIndicator, Image, Dimensions } from 'react-native';
 
 import LocationForm from './components/LocationForm';
 import SearchTermForm from './components/SearchTermForm';
@@ -7,6 +7,8 @@ import PriceForm from './components/PriceForm';
 import LimitForm from './components/LimitForm';
 import PlayScreen from './components/PlayScreen';
 import OptionCard from './components/OptionCard';
+
+import Orientation from './utilities/Orientation';
 
 export default class App extends React.Component {
   constructor() {
@@ -21,7 +23,13 @@ export default class App extends React.Component {
       gameHasStarted:false,
       challenger: '',
       defender: '',
+      orientation: Orientation.isPortrait() ? 'column' : 'row',
     }
+    Dimensions.addEventListener('change', () => {
+      this.setState({
+          orientation: Orientation.isPortrait() ? 'column' : 'row'
+      });
+    });
     this.storeInput = this.storeInput.bind(this);
     this.goBack = this.goBack.bind(this);
     this.retrieveBusinesses = this.retrieveBusinesses.bind(this);
@@ -165,7 +173,7 @@ export default class App extends React.Component {
       if (!this.state.challenger || !this.state.defender) {
         if (this.state.gameIsLoading) {
           return (
-            <ActivityIndicator color={'#87c540'} size={'large'} />
+            <ActivityIndicator color={'#fbffe0'} size={'large'} />
           );
         }
         if (!this.state.location) {
@@ -220,11 +228,13 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={{backgroundColor: '#b04632', height:600, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        {this.state.location ? null : this.displayLogo()}
-        {this.state.challenger ? <OptionCard business={this.state.challenger} removeOption={this.removeOption} opponent={this.state.defender} which={'defender'} businessPool={this.state.businessPool} reset={this.reset}/> : null}
-        {this.state.defender ? <OptionCard business={this.state.defender} removeOption={this.removeOption} opponent={this.state.challenger} which={'challenger'} businessPool={this.state.businessPool} reset={this.reset}/> : null}
-        {this.renderForms()}
+      <View flexDirection={this.state.orientation} style={{backgroundColor: '#b04632', height:600, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+
+          {this.state.location ? null : this.displayLogo()}
+          {this.state.challenger ? <OptionCard business={this.state.challenger} removeOption={this.removeOption} opponent={this.state.defender} which={'defender'} businessPool={this.state.businessPool} reset={this.reset}/> : null}
+          {this.state.defender ? <OptionCard business={this.state.defender} removeOption={this.removeOption} opponent={this.state.challenger} which={'challenger'} businessPool={this.state.businessPool} reset={this.reset}/> : null}
+          {this.renderForms()}
+  
       </View>
     );
   }
