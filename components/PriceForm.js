@@ -30,9 +30,9 @@ export default class PriceForm extends React.Component {
     let priceMaxSymbol = '$'.repeat(this.state.priceMax);
     return (
       <View style={{height: 200, alignItems: 'center'}}>
-        <Text>Adjust your price range:</Text>
+        <Text style={Styles.text}>Adjust your price range:</Text>
         <View style={Styles.sliderContainer}>
-          <Text>Min: {priceMinSymbol} {this.state.priceMin}</Text>
+          <Text style={Styles.text}>Min: {priceMinSymbol}</Text>
           <Slider
             style={Styles.slider}
             minimumTrackTintColor={'#87c540'}
@@ -45,7 +45,7 @@ export default class PriceForm extends React.Component {
           />
         </View>
         <View style={Styles.sliderContainer}>
-          <Text>Max: {priceMaxSymbol} {this.state.priceMax}</Text>
+          <Text style={Styles.text}>Max: {priceMaxSymbol}</Text>
           <Slider
             style={Styles.slider}
             minimumTrackTintColor={'#87c540'}
