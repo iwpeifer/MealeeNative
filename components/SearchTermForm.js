@@ -13,8 +13,8 @@ export default class SearchTermForm extends React.Component {
 
   renderQuickButtons() {
     let buttonSets = [
-      [{breakfast: '🥞'}, {dinner: '🍽️'}, {hamburgers: '🍔'}, {pizza: '🍕'}, {sushi: '🍣'}, {vegetarian: '🥗'}],
-      [{coffee: '☕'}, {bar:  '🍺'}, {bakery: '🥐'}, {mexican: '🌮'}, {dessert: '🍨'}, {clothes: '🛍️'}],
+      [{breakfast: '🥞'}, {dinner: '🍽️'}, {hamburgers: '🍔'}, {pizza: '🍕'}, {sushi: '🍣'}, {vegetarian: '🥗'}, {vietnamese: '🍲'}],
+      [{mexican: '🌮'}, {indian: '🍛'}, {coffee: '☕'}, {bar:  '🍺'}, {bakery: '🥐'}, {dessert: '🍨'}, {clothes: '🛍️'}],
     ];
     return (
       <View style={{height: 100, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>

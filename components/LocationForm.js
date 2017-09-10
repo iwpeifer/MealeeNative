@@ -61,9 +61,9 @@ export default class LocationForm extends React.Component {
         <View style={Styles.button}>
           <Button
             onPress={() => this.getLocation()}
-            title  ={"Get Current Location"}
+            title  ={"Use Current Location"}
             color  ={'#fff'}
-            accessibilityLabel={"Get Current Location"}
+            accessibilityLabel={"Use Current Location"}
           />
         </View>
         <Text style={Styles.text}>or enter a location:</Text>
