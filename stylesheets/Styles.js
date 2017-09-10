@@ -10,8 +10,7 @@ export default Styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    // color: '#f5ea92',
-    color: 'black',
+    color: '#f5ea92',
   },
   input: {
     borderRadius: 10,
@@ -42,7 +41,7 @@ export default Styles = StyleSheet.create({
   reset: {
     height: 40,
     width: 100,
-    backgroundColor: '#ff9b9b',
+    backgroundColor: '#7a3020',
     borderRadius: 10,
     overflow: 'hidden',
     margin: 10,

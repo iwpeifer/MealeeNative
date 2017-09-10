@@ -35,7 +35,7 @@ export default class PriceForm extends React.Component {
           <Text>Min: {priceMinSymbol} {this.state.priceMin}</Text>
           <Slider
             style={Styles.slider}
-            minimumTrackTintColor={'#b04632'}
+            minimumTrackTintColor={'#87c540'}
             step={1}
             value={parseInt(this.state.priceMin)}
             minimumValue={1}
@@ -48,7 +48,7 @@ export default class PriceForm extends React.Component {
           <Text>Max: {priceMaxSymbol} {this.state.priceMax}</Text>
           <Slider
             style={Styles.slider}
-            minimumTrackTintColor={'#b04632'}
+            minimumTrackTintColor={'#87c540'}
             step={1}
             value={parseInt(this.state.priceMax)}
             minimumValue={1}

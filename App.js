@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, Button, ActivityIndicator, Image } from 'react-native';
 
 import LocationForm from './components/LocationForm';
 import SearchTermForm from './components/SearchTermForm';
@@ -139,7 +139,7 @@ export default class App extends React.Component {
         <Button
           onPress={() => this.goBack(inputType)}
           title={"Back"}
-          color={'#ff9b9b'}
+          color={'#7a3020'}
           accessibilityLabel={"go back"}
         />
       </View>
@@ -165,7 +165,7 @@ export default class App extends React.Component {
       if (!this.state.challenger || !this.state.defender) {
         if (this.state.gameIsLoading) {
           return (
-            <ActivityIndicator color={'#b04632'} size={'large'} />
+            <ActivityIndicator color={'#87c540'} size={'large'} />
           );
         }
         if (!this.state.location) {
@@ -202,15 +202,26 @@ export default class App extends React.Component {
               retrieveBusinesses ={this.retrieveBusinesses}
               displayGoBackButton={this.displayGoBackButton}
             />
-          )
+          );
         }
       }
     }
   }
 
+  displayLogo() {
+    return (
+      <Image
+        resizeMode={'contain'}
+        style={{width: 300}}
+        source={require('./images/MealeeLogo.png')}
+      />
+    );
+  }
+
   render() {
     return (
-      <View style={{height:600, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <View style={{backgroundColor: '#b04632', height:600, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        {this.state.location ? null : this.displayLogo()}
         {this.state.challenger ? <OptionCard business={this.state.challenger} removeOption={this.removeOption} opponent={this.state.defender} which={'defender'} businessPool={this.state.businessPool} reset={this.reset}/> : null}
         {this.state.defender ? <OptionCard business={this.state.defender} removeOption={this.removeOption} opponent={this.state.challenger} which={'challenger'} businessPool={this.state.businessPool} reset={this.reset}/> : null}
         {this.renderForms()}

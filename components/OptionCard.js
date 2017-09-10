@@ -13,10 +13,10 @@ export default class OptionCard extends React.Component {
 
   defineColor() {
     if (this.props.business.rating > this.props.opponent.rating && this.props.business.review_count >= this.props.opponent.review_count / 2) {
-      return '#49a74c'
+      return '#3a8c3d'
     }
     if (this.props.business.rating === this.props.opponent.rating && this.props.business.review_count > this.props.opponent.review_count) {
-      return '#49a74c'
+      return '#3a8c3d'
     }
   }
 
@@ -36,7 +36,7 @@ export default class OptionCard extends React.Component {
     let walkTime = Math.round(this.props.business.distance / 70)
     let color = '#000'
     if (this.props.business.distance < this.props.opponent.distance) {
-      color = '#49a74c'
+      color = '#3a8c3d'
     }
     if (walkTime > 60) {
       return <Text style={{color: color, fontWeight: 'bold'}}> ({Math.round((walkTime / 60) * 100) / 100} hour walk)</Text>
@@ -66,7 +66,7 @@ export default class OptionCard extends React.Component {
 
   displayIdRatherGoHereButton(props) {
     let title = "I'd rather go here!";
-    let color = '#49a74c';
+    let color = '#3a8c3d';
     let onPress = () => props.removeOption(props.which);
     if (!props.opponent) {
       title = "Go here!";
@@ -104,7 +104,7 @@ export default class OptionCard extends React.Component {
   displayResetButton() {
     return (
       <Button
-        color={'#ff9b9b'}
+        color={'#7a3020'}
         title={'Start Over'}
         accessibilityLabel={'start over'}
         onPress={() => this.props.reset()}
@@ -115,7 +115,7 @@ export default class OptionCard extends React.Component {
   render() {
     return (
       <View>
-        <View style={{margin: 5, borderWidth: 2, borderRadius: 10, borderColor: '#b04632', height: 250, width: 300, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{backgroundColor: '#f5ea92', margin: 5, borderWidth: 2, borderRadius: 10, borderColor: '#7a3020', height: 250, width: 300, justifyContent: 'center', alignItems: 'center'}}>
           <Text style={{fontWeight: 'bold'}}>{this.props.business.name}</Text>
           {this.displayImage()}
           <View style={{position: 'absolute'}}>

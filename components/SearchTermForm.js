@@ -47,7 +47,9 @@ export default class SearchTermForm extends React.Component {
           placeholder ={'e.g., Lunch, Pizza, Shoes'}
           onChangeText={(searchTerm) => this.setState({searchTerm})}>
         </TextInput>
+        <View style={{backgroundColor: '#7a3020', borderRadius: 10, overflow: 'hidden'}}>
         {this.renderQuickButtons()}
+        </View>
         {this.state.searchTerm ? this.props.displayNextButton('searchTerm', this.state.searchTerm) : null}
         {this.props.displayGoBackButton('location')}
       </View>
