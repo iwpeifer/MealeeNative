@@ -7,5 +7,5 @@ Mealée highlights important information for you to make your decisions quickly.
 
 Craving Italian, but don't know which restaurant? Looking for lunch ideas in general? What about a gym, a museum, or a place to buy shoes? Mealée makes it easy, and it's a great tool to discover new places to try out--whether you're in a new city or your hometown!
 
-# Site in Action
+# App in Action
 <img src='https://media.giphy.com/media/l378e9DOk87UFDrmE/giphy.gif'/>
