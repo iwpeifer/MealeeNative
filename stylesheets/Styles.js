@@ -38,6 +38,14 @@ export default Styles = StyleSheet.create({
     overflow: 'hidden',
     margin: 10,
   },
+  play: {
+    height: 40,
+    width: 175,
+    backgroundColor: '#87c540',
+    borderRadius: 10,
+    overflow: 'hidden',
+    margin: 10,
+  },
   reset: {
     height: 40,
     width: 100,

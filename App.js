@@ -39,11 +39,11 @@ export default class App extends React.Component {
     this.reset = this.reset.bind(this);
   }
 
-  retrieveBusinesses() {
+  retrieveBusinesses(givenLimit) {
     let location = this.state.location;
     let term = this.state.searchTerm;
     let price = this.formatPrice(this.state.priceMin, this.state.priceMax);
-    let limit = '20';
+    let limit = givenLimit;
     this.setState({
       gameIsLoading: true
     });
@@ -229,12 +229,10 @@ export default class App extends React.Component {
   render() {
     return (
       <View flexDirection={this.state.orientation} style={{backgroundColor: '#b04632', height:600, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-
-          {this.state.location ? null : this.displayLogo()}
-          {this.state.challenger ? <OptionCard business={this.state.challenger} removeOption={this.removeOption} opponent={this.state.defender} which={'defender'} businessPool={this.state.businessPool} reset={this.reset}/> : null}
-          {this.state.defender ? <OptionCard business={this.state.defender} removeOption={this.removeOption} opponent={this.state.challenger} which={'challenger'} businessPool={this.state.businessPool} reset={this.reset}/> : null}
-          {this.renderForms()}
-  
+        {this.state.location ? null : this.displayLogo()}
+        {this.state.challenger ? <OptionCard business={this.state.challenger} removeOption={this.removeOption} opponent={this.state.defender} which={'defender'} businessPool={this.state.businessPool} reset={this.reset}/> : null}
+        {this.state.defender ? <OptionCard business={this.state.defender} removeOption={this.removeOption} opponent={this.state.challenger} which={'challenger'} businessPool={this.state.businessPool} reset={this.reset}/> : null}
+        {this.renderForms()}
       </View>
     );
   }
