@@ -10,4 +10,4 @@ Craving Italian, but don't know which restaurant? Looking for lunch ideas in gen
 # App in Action
 <img src='https://media.giphy.com/media/l378e9DOk87UFDrmE/giphy.gif'/>
 Interface is responsive to change in screen orientation:
-<img src='https://imgur.com/a/6EJfU'/>
+<img src='https://i.imgur.com/mtT33fd.png'/>
