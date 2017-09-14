@@ -65,17 +65,15 @@ export default class OptionCard extends React.Component {
   }
 
   displayIdRatherGoHereButton(props) {
-    let title = "I'd rather go here!";
-    let color = '#3a8c3d';
+    let title = "👍";
     let onPress = () => props.removeOption(props.which);
     if (!props.opponent) {
-      title = "Go here!";
-      color = '#b04632';
+      title = "GO HERE!";
       onPress = () => Linking.openURL(props.business.url).catch(err => alert('An error occurred', err));
     }
     return (
       <Button
-        color={color}
+        color={'#87c540'}
         title={title}
         accessibilityLabel={title}
         onPress={() => onPress()}
@@ -104,7 +102,7 @@ export default class OptionCard extends React.Component {
   displayResetButton() {
     return (
       <Button
-        color={'#7a3020'}
+        color={'#fff'}
         title={'Start Over'}
         accessibilityLabel={'start over'}
         onPress={() => this.props.reset()}
@@ -115,11 +113,11 @@ export default class OptionCard extends React.Component {
   render() {
     return (
       <View>
-        <View style={{backgroundColor: '#f5ea92', margin: 5, borderWidth: 2, borderRadius: 10, borderColor: '#7a3020', height: 250, width: 275, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={Styles.optionCard}>
           <Text style={{fontWeight: 'bold'}}>{this.props.business.name}</Text>
           {this.displayImage()}
           <View style={{position: 'absolute'}}>
-            {this.state.imageIsLoading ? <ActivityIndicator size={'large'} color={'#fbffe0'} style={{paddingBottom: 40}}/> : null}
+            {this.state.imageIsLoading ? <ActivityIndicator size={'large'} color={'#fff'} style={{paddingBottom: 40}}/> : null}
           </View>
           {this.displayReviewInfo()}
           <View style={{flexDirection: 'row'}}>

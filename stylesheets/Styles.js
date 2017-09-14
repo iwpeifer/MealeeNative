@@ -1,47 +1,54 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
+const GREEN = '#87c540';
+const WHITE = '#fff';
+const RED =  '#D32323'
+const BRICK = '#930d00'
+const CHARCOAL = '#36454f'
+
 export default Styles = StyleSheet.create({
   container: {
     flex: 1,
-    // flexDirection: 'column',
-    // backgroundColor: '#b04632',
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
-    color: '#f5ea92',
+    color: '#fff',
   },
   input: {
-    borderRadius: 10,
+    color: CHARCOAL,
     height: 40,
     width: 250,
-    borderColor: '#87c540',
-    borderWidth: 1,
-    backgroundColor: '#fbffe0',
+    backgroundColor: WHITE,
     textAlign: 'center',
     margin: 10,
   },
   button: {
     height: 40,
     width: 250,
-    backgroundColor: '#87c540',
+    backgroundColor: GREEN,
     borderRadius: 10,
     overflow: 'hidden',
     margin: 10,
   },
-  next: {
+  nextButton: {
     height: 40,
     width: 100,
-    backgroundColor: '#87c540',
+    backgroundColor: GREEN,
     borderRadius: 10,
     overflow: 'hidden',
     margin: 10,
+  },
+  emojiBox: {
+    backgroundColor: BRICK,
+    borderRadius: 10,
+    overflow:'hidden',
   },
   play: {
     height: 40,
     width: 175,
-    backgroundColor: '#87c540',
+    backgroundColor: GREEN,
     borderRadius: 10,
     overflow: 'hidden',
     margin: 10,
@@ -49,7 +56,7 @@ export default Styles = StyleSheet.create({
   reset: {
     height: 40,
     width: 100,
-    backgroundColor: '#7a3020',
+    backgroundColor: BRICK,
     borderRadius: 10,
     overflow: 'hidden',
     margin: 10,
@@ -62,5 +69,12 @@ export default Styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
+  optionCard: {
+    backgroundColor: '#fff',
+    margin: 5,
+    height: 250, width: 275,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

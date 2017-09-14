@@ -42,7 +42,7 @@ export default class LocationForm extends React.Component {
   displayLocationForm() {
     if (this.state.searchingLocation) {
       return (
-        <ActivityIndicator color={'#fbffe0'} size={'large'} style={{margin: 10}}/>
+        <ActivityIndicator color={'#fff'} size={'large'} style={{margin: 10}}/>
       )
     } else{
       return (

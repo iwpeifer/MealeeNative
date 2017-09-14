@@ -124,7 +124,7 @@ export default class App extends React.Component {
 
   displayNextButton(inputType, input, inputType2=null, input2=null) {
     return (
-      <View style={Styles.next}>
+      <View style={Styles.nextButton}>
         <Button
           onPress={() => this.storeInput(inputType, input, inputType2, input2)}
           title={"NEXT"}
@@ -146,9 +146,9 @@ export default class App extends React.Component {
       <View>
         <Button
           onPress={() => this.goBack(inputType)}
-          title={"Back"}
-          color={'#7a3020'}
-          accessibilityLabel={"go back"}
+          title={'Back'}
+          color={	'#fff'}
+          accessibilityLabel={'go back'}
         />
       </View>
     );
@@ -228,12 +228,12 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View flexDirection={this.state.orientation} style={{backgroundColor: '#b04632', height:600, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        {this.state.location ? null : this.displayLogo()}
-        {this.state.challenger ? <OptionCard business={this.state.challenger} removeOption={this.removeOption} opponent={this.state.defender} which={'defender'} businessPool={this.state.businessPool} reset={this.reset}/> : null}
-        {this.state.defender ? <OptionCard business={this.state.defender} removeOption={this.removeOption} opponent={this.state.challenger} which={'challenger'} businessPool={this.state.businessPool} reset={this.reset}/> : null}
-        {this.renderForms()}
-      </View>
+    <View flexDirection={this.state.orientation} style={{backgroundColor: '#c41200', height:600, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      {this.state.location ? null : this.displayLogo()}
+      {this.state.challenger ? <OptionCard business={this.state.challenger} removeOption={this.removeOption} opponent={this.state.defender} which={'defender'} businessPool={this.state.businessPool} reset={this.reset}/> : null}
+      {this.state.defender ? <OptionCard business={this.state.defender} removeOption={this.removeOption} opponent={this.state.challenger} which={'challenger'} businessPool={this.state.businessPool} reset={this.reset}/> : null}
+      {this.renderForms()}
+    </View>
     );
   }
 }

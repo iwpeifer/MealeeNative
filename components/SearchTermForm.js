@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TextInput, Button, FlatList } from 'react-native';
+import { Text, View, TextInput, Button, StyleSheet } from 'react-native';
 
 import Styles from '../stylesheets/Styles'
 
@@ -47,7 +47,7 @@ export default class SearchTermForm extends React.Component {
           placeholder ={'e.g., Lunch, Pizza, Shoes'}
           onChangeText={(searchTerm) => this.setState({searchTerm})}>
         </TextInput>
-        <View style={{backgroundColor: '#7a3020', borderRadius: 10, overflow: 'hidden'}}>
+        <View style={Styles.emojiBox}>
         {this.renderQuickButtons()}
         </View>
         {this.state.searchTerm ? this.props.displayNextButton('searchTerm', this.state.searchTerm) : null}
@@ -55,4 +55,5 @@ export default class SearchTermForm extends React.Component {
       </View>
     );
   }
+
 }
