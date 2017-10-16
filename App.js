@@ -81,7 +81,7 @@ export default class App extends React.Component {
       drawingTwo = Math.floor(Math.random() * (this.state.businessPool.length));
     }
     this.setState({
-      businessPool: this.state.businessPool.filter((business, index) => index !== drawingOne && index !== drawingTwo),
+      businessPool: this.state.businessPool.filter((business, i) => i !== drawingOne && i !== drawingTwo),
       defender: Object.assign({}, this.state.businessPool[drawingOne]),
       challenger: Object.assign({}, this.state.businessPool[drawingTwo]),
       gameHasStarted: true,
@@ -90,8 +90,8 @@ export default class App extends React.Component {
   }
 
   formatPrice(priceMin, priceMax) {
-    const lowInt = parseInt(priceMin);
-    const highInt = parseInt(priceMax);
+    const lowInt = parseInt(priceMin, 10);
+    const highInt = parseInt(priceMax, 10);
     return (Array.from({ length: highInt - (lowInt + 1) }, (v, k) => k + lowInt)).join();
   }
 
