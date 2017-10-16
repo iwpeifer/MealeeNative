@@ -1,7 +1,10 @@
 import React from 'react';
-import { Text, View, Slider, Button } from 'react-native';
+import PropTypes from 'prop-types';
+import { Text, View, Slider } from 'react-native';
 
-import Styles from '../stylesheets/Styles'
+import Styles from '../stylesheets/Styles';
+
+const moneyBag = require('../images/moneybag.png');
 
 export default class PriceForm extends React.Component {
   constructor() {
@@ -9,52 +12,52 @@ export default class PriceForm extends React.Component {
     this.state = {
       priceMin: '1',
       priceMax: '4',
-    }
+    };
   }
 
   componentWillUpdate(nextProps, nextState) {
     if (nextState.priceMin > this.state.priceMax) {
       this.setState({
-        priceMax: nextState.priceMin
-      })
+        priceMax: nextState.priceMin,
+      });
     }
     if (nextState.priceMax < this.state.priceMin) {
       this.setState({
-        priceMin: nextState.priceMax
-      })
+        priceMin: nextState.priceMax,
+      });
     }
   }
 
   render() {
-    let priceMinSymbol = '$'.repeat(this.state.priceMin);
-    let priceMaxSymbol = '$'.repeat(this.state.priceMax);
+    const priceMinSymbol = '$'.repeat(this.state.priceMin);
+    const priceMaxSymbol = '$'.repeat(this.state.priceMax);
     return (
-      <View style={{height: 200, alignItems: 'center'}}>
+      <View style={{ height: 200, alignItems: 'center' }}>
         <Text style={Styles.text}>Adjust your price range:</Text>
         <View style={Styles.sliderContainer}>
           <Text style={Styles.text}>Min: {priceMinSymbol}</Text>
           <Slider
             style={Styles.slider}
-            minimumTrackTintColor={'#87c540'}
+            minimumTrackTintColor="#87c540"
             step={1}
-            value={parseInt(this.state.priceMin)}
+            value={parseInt(this.state.priceMin, 10)}
             minimumValue={1}
             maximumValue={4}
-            onValueChange={(value) => this.setState({priceMin: value})}
-            thumbImage={require('../images/moneybag.png')}
+            onValueChange={value => this.setState({ priceMin: value })}
+            thumbImage={moneyBag}
           />
         </View>
         <View style={Styles.sliderContainer}>
           <Text style={Styles.text}>Max: {priceMaxSymbol}</Text>
           <Slider
             style={Styles.slider}
-            minimumTrackTintColor={'#87c540'}
+            minimumTrackTintColor="#87c540"
             step={1}
-            value={parseInt(this.state.priceMax)}
+            value={parseInt(this.state.priceMax, 10)}
             minimumValue={1}
             maximumValue={4}
-            onValueChange={(value) => this.setState({priceMax: value})}
-            thumbImage={require('../images/moneybag.png')}
+            onValueChange={value => this.setState({ priceMax: value })}
+            thumbImage={moneyBag}
           />
         </View>
         {this.props.displayNextButton('priceMin', this.state.priceMin, 'priceMax', this.state.priceMax)}
@@ -63,3 +66,8 @@ export default class PriceForm extends React.Component {
     );
   }
 }
+
+PriceForm.propTypes = {
+  displayNextButton: PropTypes.func.isRequired,
+  displayGoBackButton: PropTypes.func.isRequired,
+};

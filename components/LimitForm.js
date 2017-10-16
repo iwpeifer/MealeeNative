@@ -1,14 +1,15 @@
 import React from 'react';
-import { Text, View, Slider, Button } from 'react-native';
+import PropTypes from 'prop-types';
+import { Text, View, Slider } from 'react-native';
 
-import Styles from '../stylesheets/Styles'
+import Styles from '../stylesheets/Styles';
 
 export default class LimitForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      limit: "20",
-    }
+      limit: '20',
+    };
   }
 
   render() {
@@ -20,10 +21,10 @@ export default class LimitForm extends React.Component {
           <Slider
             style={Styles.slider}
             step={10}
-            value={parseInt(this.state.limit)}
+            value={parseInt(this.state.limit, 10)}
             minimumValue={10}
             maximumValue={40}
-            onValueChange={(value) => this.setState({limit: value})}
+            onValueChange={value => this.setState({ limit: value })}
           />
         </View>
         {this.displayNextButton()}
@@ -32,3 +33,7 @@ export default class LimitForm extends React.Component {
     );
   }
 }
+
+LimitForm.propTypes = {
+  displayGoBackButton: PropTypes.func.isRequired,
+};

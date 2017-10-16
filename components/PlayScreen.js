@@ -1,13 +1,10 @@
 import React from 'react';
-import { Text, View, Button } from 'react-native';
+import PropTypes from 'prop-types';
+import { View, Button } from 'react-native';
 
-import Styles from '../stylesheets/Styles'
+import Styles from '../stylesheets/Styles';
 
 export default class PlayScreen extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   displayPlayButton(limitSet, index) {
     return (
       <View key={index}>
@@ -15,7 +12,7 @@ export default class PlayScreen extends React.Component {
           <Button
             onPress={() => this.props.retrieveBusinesses(Object.values(limitSet))}
             title={`Play ${Object.values(limitSet)} rounds! ${Object.keys(limitSet)}`}
-            color={'#fff'}
+            color="#fff"
             accessibilityLabel={`Play ${Object.values(limitSet)} rounds!`}
           />
         </View>
@@ -24,12 +21,17 @@ export default class PlayScreen extends React.Component {
   }
 
   render() {
-    let limitArray = [{'🙂': '10'}, {'😀': '20'}, {'😆': '30'}, {'😨': '40'}];
+    const limitArray = [{ '🙂': '10' }, { '😀': '20' }, { '😆': '30' }, { '😨': '40' }];
     return (
-      <View style={{height: 300, alignItems: 'center'}}>
+      <View style={{ height: 300, alignItems: 'center' }}>
         {limitArray.map((limitSet, index) => this.displayPlayButton(limitSet, index))}
         {this.props.displayGoBackButton('priceMin')}
       </View>
     );
   }
 }
+
+PlayScreen.propTypes = {
+  retrieveBusinesses: PropTypes.func.isRequired,
+  displayGoBackButton: PropTypes.func.isRequired,
+};

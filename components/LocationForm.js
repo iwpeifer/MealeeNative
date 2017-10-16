@@ -1,58 +1,58 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Text, View, TextInput, Button, ActivityIndicator } from 'react-native';
 
-import Styles from '../stylesheets/Styles'
+import Styles from '../stylesheets/Styles';
 
 export default class LocationForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      location: "",
+      location: '',
       searchingLocation: false,
-    }
+    };
   }
 
   getAddress(lat, long) {
-    let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=AIzaSyB80MQ7VcG-FH3q_VIjvG-6SZG52lqKNok`
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=AIzaSyB80MQ7VcG-FH3q_VIjvG-6SZG52lqKNok`;
     fetch(url)
-      .then( response => response.json() )
-      .then( json => this.setState({
+      .then(response => response.json())
+      .then(json => this.setState({
         location: json.results[0].formatted_address,
-        searchingLocation: false
-      }))
-    }
+        searchingLocation: false,
+      }));
+  }
 
   getLocation() {
     this.setState({
-      searchingLocation: true
-    })
-    window.navigator.geolocation.getCurrentPosition( pos => {
-      this.getAddress(pos.coords.latitude, pos.coords.longitude)
-    }, this.locationError)
+      searchingLocation: true,
+    });
+    window.navigator.geolocation.getCurrentPosition((pos) => {
+      this.getAddress(pos.coords.latitude, pos.coords.longitude);
+    }, this.locationError);
   }
 
   locationError(error) {
-    alert(`ERROR(${error.code}): ${error.message}`)
+    alert(`ERROR(${error.code}): ${error.message}`);
     this.setState({
       searchingLocation: false,
-      location: ""
-    })
+      location: '',
+    });
   }
 
   displayLocationForm() {
     if (this.state.searchingLocation) {
       return (
-        <ActivityIndicator color={'#fff'} size={'large'} style={{margin: 10}}/>
-      )
-    } else{
-      return (
-        <TextInput
-          style       ={Styles.input}
-          value       ={this.state.location}
-          onChangeText={(location) => this.setState({location})}>
-        </TextInput>
-      )
+        <ActivityIndicator color="#fff" size="large" style={{ margin: 10 }} />
+      );
     }
+    return (
+      <TextInput
+        style={Styles.input}
+        value={this.state.location}
+        onChangeText={location => this.setState({ location })}
+      />
+    );
   }
 
   render() {
@@ -61,9 +61,9 @@ export default class LocationForm extends React.Component {
         <View style={Styles.button}>
           <Button
             onPress={() => this.getLocation()}
-            title  ={"Use Current Location"}
-            color  ={'#fff'}
-            accessibilityLabel={"Use Current Location"}
+            title="Use Current Location"
+            color="#fff"
+            accessibilityLabel="Use Current Location"
           />
         </View>
         <Text style={Styles.text}>or enter a location:</Text>
@@ -73,3 +73,7 @@ export default class LocationForm extends React.Component {
     );
   }
 }
+
+LocationForm.propTypes = {
+  displayNextButton: PropTypes.func.isRequired,
+};
